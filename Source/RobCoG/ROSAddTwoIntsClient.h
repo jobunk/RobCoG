@@ -1,4 +1,4 @@
-// Copyright 2017, Institute for Artificial Intelligence - University of Bremen
+// Copyright 2018, Institute for Artificial Intelligence - University of Bremen
 
 #pragma once
 
@@ -13,16 +13,13 @@ public:
     {
     }
 
-    void Callback(TSharedPtr<FROSBridgeSrv::SrvRequest> InRequest, TSharedPtr<FROSBridgeSrv::SrvResponse> InResponse) override
+    void Callback(TSharedPtr<FROSBridgeSrv::SrvResponse> InResponse) override
     {
-        TSharedPtr<rospy_tutorials::AddTwoInts::Request> Request =
-            StaticCastSharedPtr<rospy_tutorials::AddTwoInts::Request>(InRequest);
-
         TSharedPtr<rospy_tutorials::AddTwoInts::Response> Response =
             StaticCastSharedPtr<rospy_tutorials::AddTwoInts::Response>(InResponse);
 
-        UE_LOG(LogTemp, Log, TEXT("[%s] In actor %s: Add Two Ints: %d + %d = %d"),
-			*FString(__FUNCTION__), *Owner->GetName(), Request->GetA(), Request->GetB(), Response->GetSum());
+        UE_LOG(LogTemp, Log, TEXT("[%s] In actor %s: Add Two Ints response: %d"),
+			*FString(__FUNCTION__), *Owner->GetName(), Response->GetSum());
     }
 
 private:

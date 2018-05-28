@@ -44,6 +44,9 @@ void AROSAddTwoIntsServiceClient::BeginPlay()
 	TSharedPtr<FROSBridgeSrv::SrvResponse> Response =
 		MakeShareable(new rospy_tutorials::AddTwoInts::Response());
 
+	// Sleep a few ms to make sure the thread is spun
+	FPlatformProcess::Sleep(0.01);
+
 	ROSHandler->CallService(ServiceClient, Request, Response);
 }
 
